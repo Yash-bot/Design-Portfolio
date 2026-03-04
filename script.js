@@ -21,13 +21,28 @@ sec.style.transform="translateY(60px)"
 observer.observe(sec)
 })
 
-const cursor = document.querySelector(".cursor")
 const blur = document.querySelector(".cursor-blur")
 
-document.addEventListener("mousemove",(dets)=>{
-cursor.style.left=dets.x+"px"
-cursor.style.top=dets.y+"px"
+document.addEventListener("mousemove",(e)=>{
 
-blur.style.left=dets.x-200+"px"
-blur.style.top=dets.y-200+"px"
+blur.style.left = e.x - 200 + "px"
+blur.style.top = e.y - 200 + "px"
+
+})
+
+let lastScroll = 0
+const navbar = document.querySelector("nav")
+
+window.addEventListener("scroll", () => {
+
+const currentScroll = window.pageYOffset
+
+if(currentScroll > lastScroll){
+navbar.classList.add("nav-hidden")
+}else{
+navbar.classList.remove("nav-hidden")
+}
+
+lastScroll = currentScroll
+
 })
